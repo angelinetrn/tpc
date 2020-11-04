@@ -1,0 +1,24 @@
+#! /bin/bash
+nouveau () {
+read -r -p $'\n\e[0;92m+\e[0m\e[1;77m Nom du tp (sans .c): \e[0;96m' nomdutp
+cp nouveau.c tp/"$nomdutp".c
+
+printf "Yeay bien joué, tu peux retrouver ton tp dans le dossier tp, oublie pas avant de le rendre de supprimer tous les commentaires!"
+printf "Tape \"vim tp/"$nomdutp".c\" ou ouvre le avec ton editeur de texte pour le modifier"
+echo
+}
+
+exectp () {
+read -p $'\n\e[0;92m+\e[0m\e[1;77m Nom du tp (sans .c): \e[0;96m' nomdutp
+gcc -o exec tp/"$nomdutp".c
+printf "L'exécutable s'appelle \"exec\", pour tester ton programme, tape \"./exec\""
+}
+
+printf "\n\e[0;92m? \e[0m\e[1;77mVeux tu compiler ou créer un .c ?\e[0;96m\e[0m"
+printf "\n\e[0;92m? \e[0m\e[1;77mTape c pour compiler, n pour un nouveau .c\e[0;96m [c/n]\e[0m"
+read -r -n1 yn
+  if [[ $yn == "c" ]]; then
+    exectp
+  elif [[ $yn == "n" ]]; then
+    nouveau
+  fi
